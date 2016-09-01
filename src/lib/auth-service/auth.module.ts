@@ -1,8 +1,9 @@
 import {NgModule, SkipSelf, Optional} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {AuthEffects, AuthActions, AuthReducer} from "./state/index";
-import {AuthServiceCIF, FirebaseAuthService} from "./service/";
+import {AuthServiceCIF, FirebaseAuthService} from "./service/index";
 
+export * from './index'
 export {AuthReducer};
 
 

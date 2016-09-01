@@ -51,22 +51,29 @@ function _execNpmPublish(componentName: string, label: string): Promise<void> {
   console.log(`Publishing '${componentName}' from '${componentPath}/'...`);
 
   const command = 'npm';
-  const args = ['publish', '--access', 'public', label ? `--tag` : undefined, label || undefined];
+  let args = ['publish', '--access', 'public'];
+  if(label){
+    args.push('--tag');
+    args.push(label);
+  }
   return new Promise((resolve, reject) => {
     console.log(`Executing "${command} ${args.join(' ')}"...`);
-
+    let errMsg = ''
     const childProcess = spawn(command, args);
     childProcess.stdout.on('data', (data: Buffer) => {
       console.log(`stdout: ${data.toString().split(/[\n\r]/g).join('\n        ')}`);
     });
     childProcess.stderr.on('data', (data: Buffer) => {
-      console.error(`stderr: ${data.toString().split(/[\n\r]/g).join('\n        ')}`);
+      errMsg = errMsg + data.toString().split(/[\n\r]/g).join('\n        ');
     });
 
     childProcess.on('close', (code: number) => {
       if (code == 0) {
         resolve();
       } else {
+        if(errMsg && errMsg.length){
+          console.error('stderr:' + errMsg.replace('npm ERR!', ''));
+        }
         reject(new Error(`Component ${componentName} did not publish, status: ${code}.`));
       }
     });

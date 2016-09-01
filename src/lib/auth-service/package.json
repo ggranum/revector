@@ -1,6 +1,6 @@
 {
   "name": "@revector/auth-service",
-  "version": "0.0.0-alpha.1",
+  "version": "0.0.1-alpha.2",
   "description": "NgRx Store + AngularFire2 based authentication Module for Angular 2",
   "main": "./auth.module.js",
   "typings": "./auth.module.d.ts",
