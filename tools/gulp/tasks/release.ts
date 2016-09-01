@@ -48,7 +48,7 @@ function _execNpmPublish(componentName: string, label: string): Promise<void> {
   }
 
   process.chdir(componentPath);
-  console.log(`Publishing ${componentName}...`);
+  console.log(`Publishing '${componentName}' from '${componentPath}/'...`);
 
   const command = 'npm';
   const args = ['publish', '--access', 'public', label ? `--tag` : undefined, label || undefined];
