@@ -1,9 +1,9 @@
 {
-  "name": "@revector/auth-service",
+  "name": "@revector/asciidoctor-panel",
   "version": "0.0.1-alpha.4",
-  "description": "NgRx Store + AngularFire2 based authentication Module for Angular 2",
-  "main": "./auth.module.js",
-  "typings": "./auth.module.d.ts",
+  "description": "UI pane for displaying ASCII Doctor formatted data.",
+  "main": "./asciidoctor-panel.js",
+  "typings": "./asciidoctor-panel.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/ggranum/revector.git"
@@ -15,7 +15,9 @@
     "authentication",
     "auth",
     "firebase",
-    "angularFire"
+    "angularFire",
+    "asciidoctor",
+    "asciidoc"
   ],
   "license": "MIT",
   "bugs": {
@@ -24,6 +26,7 @@
   "homepage": "https://github.com/ggranum/revector#readme",
   "peerDependencies": {
     "@angular/core": "^2.0.0-rc.5",
-    "@angular/common": "^2.0.0-rc.5"
+    "asciidoctorjs-web-repack": "^1.5.5"
+
   }
 }

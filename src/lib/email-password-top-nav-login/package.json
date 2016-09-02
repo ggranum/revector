@@ -1,6 +1,6 @@
 {
   "name": "@revector/email-password-top-nav-login",
-  "version": "0.0.1-alpha.3",
+  "version": "0.0.1-alpha.4",
   "description": "A horizontal login form that relies on @revector/auth-service",
   "main": "./email-password-top-nav-login.module.js",
   "typings": "./email-password-top-nav-login.module.d.ts",
