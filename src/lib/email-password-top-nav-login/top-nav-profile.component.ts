@@ -1,10 +1,10 @@
 import {Component, ChangeDetectionStrategy, Input} from '@angular/core'
 import {Store} from '@ngrx/store'
 
-import {AuthStateIF, SignInStateIF, UserAuthInfoIF} from '@revector/auth-service'
+import {AuthStateIF, SignInStateIF, UserAuthInfoIF, AuthActions} from '@revector/auth-service'
 
 // @revisit: There seems to be a bug. Using the /auth-service/index target for import causes Injection to fail.
-import {AuthActions} from "@revector/auth-service/state/auth.actions";
+// import {} from "@revector/auth-service";
 
 
 @Component({

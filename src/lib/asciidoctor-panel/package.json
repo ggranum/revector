@@ -1,6 +1,6 @@
 {
   "name": "@revector/asciidoctor-panel",
-  "version": "0.0.1-alpha.4",
+  "version": "0.0.1-alpha.5",
   "description": "UI pane for displaying ASCII Doctor formatted data.",
   "main": "./asciidoctor-panel.js",
   "typings": "./asciidoctor-panel.d.ts",

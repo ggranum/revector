@@ -1,8 +1,7 @@
 import {Component, ChangeDetectionStrategy} from '@angular/core'
 import {Observable} from 'rxjs'
 import {Store} from '@ngrx/store'
-import {SignInStateIF, AuthStoreStateIF} from "@revector/auth-service/state/auth.state";
-import {UserAuthInfoIF} from "@revector/auth-service/service/auth.service.interface";
+import {SignInStateIF, AuthStoreStateIF, UserAuthInfoIF} from "@revector/auth-service";
 
 
 @Component({
