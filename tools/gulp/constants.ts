@@ -1,5 +1,6 @@
 import {join} from 'path';
 
+//noinspection TypeScriptUnresolvedVariable
 export const PROJECT_ROOT = join(__dirname, '../..');
 export const SOURCE_ROOT = join(PROJECT_ROOT, 'src');
 
