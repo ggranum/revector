@@ -119,7 +119,7 @@ const FORGOT_PASSWORD_RSRC: SignInPanelResources = {
   }
 }
 
-let ResourceState = {}
+let ResourceState:any = {}
 ResourceState[SignInAction.signIn] = SIGN_IN_RSRC
 ResourceState[SignInAction.signUp] = SIGNUP_RSRC
 ResourceState[SignInAction.forgotPassword] = FORGOT_PASSWORD_RSRC
@@ -185,13 +185,13 @@ export class SignInPanelComponent {
     this.rsrc = ResourceState[mode]
   }
 
-  onSubHeaderLinkClick(e) {
+  onSubHeaderLinkClick(e:Event) {
     e.preventDefault();
     e.stopPropagation();
     this.cycleDisplayMode(this.authInfo.action)
   }
 
-  onForgotPasswordClick(e) {
+  onForgotPasswordClick(e:Event) {
     e.preventDefault();
     e.stopPropagation();
     this.setDisplayMode(SignInAction.forgotPassword)
