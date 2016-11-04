@@ -1,7 +1,7 @@
 {
-  "name": "@revector/asciidoctor-panel",
+  "name": "@revector/drawer",
   "version": "0.0.1-alpha.10",
-  "description": "UI pane for displaying ASCII Doctor formatted data.",
+  "description": "UI drawer (flyout, slide-out etc)",
   "main": "./index.js",
   "typings": "./index.d.ts",
   "repository": {
@@ -11,9 +11,6 @@
   "keywords": [
     "angular",
     "angular2",
-    "components",
-    "asciidoctor",
-    "asciidoc",
     "component"
   ],
   "license": "MIT",
@@ -23,6 +20,6 @@
   "homepage": "https://github.com/ggranum/revector#readme",
   "peerDependencies": {
     "@angular/core": "~2.1.0",
-    "asciidoctorjs-web-repack": "^1.5.5-2.4"
+    "@angular/common": "~2.1.0"
   }
 }

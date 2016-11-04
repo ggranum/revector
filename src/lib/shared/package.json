@@ -1,6 +1,6 @@
 {
   "name": "@revector/shared",
-  "version": "0.0.1-alpha.6",
+  "version": "0.0.1-alpha.10",
   "description": "Utility classes and shared functionality for the Revector components.",
   "main": "./index.js",
   "typings": "./index.d.ts",
