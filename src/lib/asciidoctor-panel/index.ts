@@ -1,1 +1,1 @@
-export {RvAsciidoctorPanelModule, RvAsciidoctorComponent} from './asciidoctor-panel'
+export * from './asciidoctor-panel'

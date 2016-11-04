@@ -1,6 +1,6 @@
 {
   "name": "@revector/asciidoctor-panel",
-  "version": "0.0.1-alpha.5",
+  "version": "0.0.1-alpha.6",
   "description": "UI pane for displaying ASCII Doctor formatted data.",
   "main": "./asciidoctor-panel.js",
   "typings": "./asciidoctor-panel.d.ts",
@@ -12,12 +12,9 @@
     "angular",
     "angular2",
     "components",
-    "authentication",
-    "auth",
-    "firebase",
-    "angularFire",
     "asciidoctor",
-    "asciidoc"
+    "asciidoc",
+    "component"
   ],
   "license": "MIT",
   "bugs": {
@@ -25,8 +22,7 @@
   },
   "homepage": "https://github.com/ggranum/revector#readme",
   "peerDependencies": {
-    "@angular/core": "^2.0.0-rc.5",
-    "asciidoctorjs-web-repack": "^1.5.5"
-
+    "@angular/core": "~2.1.0",
+    "asciidoctorjs-web-repack": "^1.5.5-2.4"
   }
 }
