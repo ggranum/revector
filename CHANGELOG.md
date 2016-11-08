@@ -28,6 +28,16 @@
 
 
 
+<a name="0.0.2"></a>
+## [0.0.2](https://github.com/ggranum/revector/compare/v0.0.1...v0.0.2) (2016-11-08)
+
+
+### Features
+
+* **build:** improve docs and add script for bumping version ([8b04451](https://github.com/ggranum/revector/commit/8b04451))
+
+
+
 <a name="0.0.1"></a>
 ## 0.0.1 (2016-11-08)
 
