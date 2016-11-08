@@ -1,0 +1,28 @@
+= ReVector
+
+== About
+
+At the moment, just the one component, a https://github.com/angular/angular[Angular2^] + https://github.com/ngrx/store[NgRx Store^] + https://github.com/angular/angularfire2/[AngularFire2^] based authentication library in the form of an Angular2 Module.
+
+The AuthService does abstract the use of Firebase, so hypothetically one could use some other authentication backend simply by implementing a service class conforming to auth.service.interface.ts. But why?
+
+== Use
+
+@todo
+
+== Contributing
+
+This project was bootstrapped from the combination of the Angular Material 2 and an Angular2-cli created project. The build system and file layout in particular are inherited from the https://github.com/angular/material2[Angular Material^] project. There is much work remaining to modify it to the more limited needs of this project.
+
+=== Build
+
+@todo
+
+=== Running unit tests
+
+@todo
+
+=== Running end-to-end tests
+
+@todo
+
