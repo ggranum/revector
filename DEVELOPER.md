@@ -9,10 +9,12 @@
 
 == Publishing
 
-1) Update version number (global search and destroy on '"version": "0.0.1-alpha.11",', for example.)
-2) Commit all changes
-3) Run 'generate-changelog.sh patch'
-4) Run NPM publish steps, below.
+1) Commit all changes
+1) Run 'gulp versionBump --bump=patch'
+1) Verify the version number has been updated and that there are no uncommitted changes. 
+1) Run 'generate-changelog.sh patch'
+1) Verify change log generated and that there are no uncommitted changes. 
+1) Run NPM publish steps, below.
 
 Requires the npm 'revector' user account credentials.
 

@@ -5,7 +5,6 @@ import gulpRunSequence = require('run-sequence');
 import path = require('path');
 import minimist = require('minimist');
 
-import {execTask, cleanTask} from '../task_helpers';
 import {DIST_COMPONENTS_ROOT} from '../constants';
 
 const argv = minimist(process.argv.slice(3));
@@ -14,31 +13,7 @@ const logMessageBuffer = (data: Buffer) => {
   console.log(`stdout: ${data.toString().split(/[\n\r]/g).join('\n        ')}`);
 }
 
-
-task(':build:release:clean-spec', cleanTask('dist/**/*.spec.*'));
-
-
-task('build:release', function(done: () => void) {
-  // Synchronously run those tasks.
-  gulpRunSequence(
-    'clean',
-    ':build:components:ngc',
-    ':build:release:clean-spec',
-    done
-  );
-});
-
-
-/** Make sure we're logged in. */
-task(':publish:whoami', execTask('npm', ['whoami'], {
-  silent: true,
-  errMessage: 'You must be logged in to publish.'
-}));
-
-task(':publish:logout', execTask('npm', ['logout']));
-
-
-function _execNpmPublish(componentName: string, label: string): Promise<void> {
+function _execUpdateVersion(componentName: string, bump: string): Promise<void> {
   const componentPath = path.join(DIST_COMPONENTS_ROOT, componentName);
   const stat = statSync(componentPath);
 
@@ -52,14 +27,11 @@ function _execNpmPublish(componentName: string, label: string): Promise<void> {
   }
 
   process.chdir(componentPath);
-  console.log(`Publishing '${componentName}' from '${componentPath}/'...`);
-
+  console.log(`Updating revision for '${componentName}' from '${componentPath}/'...`);
+//npm version ${1:-$bump} -m "chore(release): %s" &&
   const command = 'npm';
-  let args = ['publish', '--access', 'public'];
-  if(label){
-    args.push('--tag');
-    args.push(label);
-  }
+  let args = ['--no-git-tag-version', 'version', bump, '-m', '"chore(release): %s' ];
+
   return new Promise((resolve, reject) => {
     console.log(`Executing "${command} ${args.join(' ')}"...`);
     let errMsg = ''
@@ -76,38 +48,36 @@ function _execNpmPublish(componentName: string, label: string): Promise<void> {
         if(errMsg && errMsg.length){
           console.error('stderr:' + errMsg.replace('npm ERR!', ''));
         }
-        reject(new Error(`Component ${componentName} did not publish, status: ${code}.`));
+        reject(new Error(`Component ${componentName} did not update, status: ${code}.`));
       }
     });
   });
 }
 
-task(':publish', function(done: (err?: any) => void) {
-  const label = argv['tag'];
+task(':versionBump', function(done: (err?: any) => void) {
+  const bump = argv['bump'];
   const currentDir = process.cwd();
 
-  if (!label) {
-    console.log('You can use a label with --tag=labelName.');
-    console.log('Publishing using the latest tag.');
+  if (!bump) {
+    console.log("You can specify a bump level with --bump=[<newversion> | major | minor | patch | premajor | preminor | prepatch | prerelease | from-git].");
+    console.log("Publishing using 'patch'.");
   } else {
-    console.log(`Publishing using the ${label} tag.`);
+    console.log(`Publishing using the ${bump} tag.`);
   }
   console.log('\n\n');
 
   // Build a promise chain that publish each component.
   readdirSync(DIST_COMPONENTS_ROOT)
-    .reduce((prev, dirName) => prev.then(() => _execNpmPublish(dirName, label)), Promise.resolve())
+    .reduce((prev, dirName) => prev.then(() => _execUpdateVersion(dirName, bump || 'patch')), Promise.resolve())
     .then(() => done())
     .catch((err: Error) => done(err))
     .then(() => process.chdir(currentDir));
 });
 
-task('publish', function(done: () => void) {
+task('versionBump', function(done: () => void) {
   gulpRunSequence(
-    ':publish:whoami',
     'build:release',
-    ':publish',
-    ':publish:logout',
+    ':versionBump',
     done
   );
 });

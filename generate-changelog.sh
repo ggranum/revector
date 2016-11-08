@@ -30,8 +30,8 @@ githubToken=$(cat ./generate-changelog-token.local.txt) &&
   git commit -m"docs(CHANGELOG): $version" &&
   echo 'Restore backed-up package.json file' &&
   mv -f _package.json package.json &&
-  echo 'Call npm version ${1:-$bump} -m "chore(release): %s' &&
-  npm version ${1:-$bump} -m "chore(release): %s" &&
+  echo 'Call npm version $bump -m "chore(release): %s"' &&
+  npm version -$bump -m "chore(release): %s" &&
   echo 'Run git push --follow-tags'
   git push --follow-tags &&
   ./node_modules/.bin/conventional-github-releaser -t ${githubToken} -p ${2:-$preset} &&
