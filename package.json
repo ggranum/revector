@@ -2,7 +2,7 @@
   "name": "revector",
   "description": "NgRx Store + AngularFire2 based authentication Module for Angular 2",
   "homepage": "https://github.com/ggranum/revector#readme",
-  "version": "0.0.1-alpha.5",
+  "version": "0.0.1-alpha.11",
   "license": "MIT",
   "private": false,
   "repository": {
@@ -27,6 +27,7 @@
   "scripts": {
     "build": "gulp build:components",
     "build.release": "gulp build:release",
+    "publish": "gulp publish",
     "serve": "gulp serve:devapp",
     "test": "gulp test",
     "tslint": "gulp lint",

@@ -1,7 +1,7 @@
 {
-  "name": "@revector/asciidoctor-panel",
+  "name": "@revector/sign-in-panel",
   "version": "0.0.1-alpha.11",
-  "description": "UI pane for displaying ASCII Doctor formatted data.",
+  "description": "A sign-up form that works with the @revector/auth-service",
   "main": "./index.js",
   "typings": "./index.d.ts",
   "repository": {
@@ -12,9 +12,11 @@
     "angular",
     "angular2",
     "components",
-    "asciidoctor",
-    "asciidoc",
-    "component"
+    "authentication",
+    "authorization",
+    "auth",
+    "firebase",
+    "angularFire"
   ],
   "license": "MIT",
   "bugs": {
@@ -23,6 +25,9 @@
   "homepage": "https://github.com/ggranum/revector#readme",
   "peerDependencies": {
     "@angular/core": "~2.1.0",
-    "asciidoctorjs-web-repack": "^1.5.5-2.4"
+    "@angular/common": "~2.1.0",
+    "@angular/forms": "~2.1.0",
+    "@angular/platform-browser": "~2.1.0",
+    "@angular/material": "2.0.0-alpha.9-3"
   }
 }

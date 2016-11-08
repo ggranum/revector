@@ -10,6 +10,10 @@ import {DIST_COMPONENTS_ROOT} from '../constants';
 
 const argv = minimist(process.argv.slice(3));
 
+const logMessageBuffer = (data: Buffer) => {
+  console.log(`stdout: ${data.toString().split(/[\n\r]/g).join('\n        ')}`);
+}
+
 
 task(':build:release:clean-spec', cleanTask('dist/**/*.spec.*'));
 
@@ -60,9 +64,7 @@ function _execNpmPublish(componentName: string, label: string): Promise<void> {
     console.log(`Executing "${command} ${args.join(' ')}"...`);
     let errMsg = ''
     const childProcess = spawn(command, args);
-    childProcess.stdout.on('data', (data: Buffer) => {
-      console.log(`stdout: ${data.toString().split(/[\n\r]/g).join('\n        ')}`);
-    });
+    childProcess.stdout.on('data', logMessageBuffer);
     childProcess.stderr.on('data', (data: Buffer) => {
       errMsg = errMsg + data.toString().split(/[\n\r]/g).join('\n        ');
     });
