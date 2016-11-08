@@ -1,62 +1,76 @@
-import {spawn} from 'child_process';
 import {existsSync, readdirSync, statSync} from 'fs';
 import {task} from 'gulp';
+
+const semvar = require('semver');
+const jsonFile = require('jsonfile');
+
 import gulpRunSequence = require('run-sequence');
 import path = require('path');
 import minimist = require('minimist');
 
-import {DIST_COMPONENTS_ROOT} from '../constants';
+import {PROJECT_ROOT, SOURCE_ROOT} from '../constants';
 
 const argv = minimist(process.argv.slice(3));
 
-const logMessageBuffer = (data: Buffer) => {
-  console.log(`stdout: ${data.toString().split(/[\n\r]/g).join('\n        ')}`);
+const pathIsComponentDir = function (filePath: string) {
+  let file = path.join(filePath, 'package.json')
+  return existsSync(file)
 }
 
-function _execUpdateVersion(componentName: string, bump: string): Promise<void> {
-  const componentPath = path.join(DIST_COMPONENTS_ROOT, componentName);
-  const stat = statSync(componentPath);
-
-  if (!stat.isDirectory()) {
-    return;
-  }
-
-  if (!existsSync(path.join(componentPath, 'package.json'))) {
-    console.log(`Skipping ${componentPath} as it does not have a package.json.`);
-    return;
-  }
-
-  process.chdir(componentPath);
-  console.log(`Updating revision for '${componentName}' from '${componentPath}/'...`);
-//npm version ${1:-$bump} -m "chore(release): %s" &&
-  const command = 'npm';
-  let args = ['--no-git-tag-version', 'version', bump, '-m', '"chore(release): %s' ];
-
-  return new Promise((resolve, reject) => {
-    console.log(`Executing "${command} ${args.join(' ')}"...`);
-    let errMsg = ''
-    const childProcess = spawn(command, args);
-    childProcess.stdout.on('data', logMessageBuffer);
-    childProcess.stderr.on('data', (data: Buffer) => {
-      errMsg = errMsg + data.toString().split(/[\n\r]/g).join('\n        ');
-    });
-
-    childProcess.on('close', (code: number) => {
-      if (code == 0) {
-        resolve();
-      } else {
-        if(errMsg && errMsg.length){
-          console.error('stderr:' + errMsg.replace('npm ERR!', ''));
-        }
-        reject(new Error(`Component ${componentName} did not update, status: ${code}.`));
+const allDirectories = function (dirPath: string): string[] {
+  let dirs: string[] = []
+  let childPaths: string[] = readdirSync(dirPath)
+  childPaths.forEach((childName) => {
+    if (childName != 'node_modules') {
+      const childPath = path.join(dirPath, childName);
+      const stat = statSync(childPath);
+      if (stat.isDirectory()) {
+        dirs.push(childPath)
+        dirs = dirs.concat(allDirectories(childPath))
       }
-    });
-  });
+    }
+  })
+  return dirs
 }
 
-task(':versionBump', function(done: (err?: any) => void) {
+const collectComponents = function (dirPath: string): string[] {
+  let componentPaths: string[] = []
+  let paths: string[] = allDirectories(dirPath)
+  paths.forEach((dirPath) => {
+    if (pathIsComponentDir(dirPath)) {
+      componentPaths.push(dirPath)
+    }
+  })
+  return componentPaths
+}
+
+const versionBumpPaths = function (paths: string[], bump: any, qualifier: string|string) {
+// Build a promise chain that updates each component's version.
+  paths.forEach((componentPath: string) => {
+    _execUpdateVersion(componentPath, bump || 'patch', qualifier)
+  })
+};
+
+
+function _execUpdateVersion(componentPath: string, bump: string, qualifier: string) {
+
+  let file = path.join(componentPath, 'package.json')
+  let pkgJson = jsonFile.readFileSync(file)
+  let semv = semvar.inc(pkgJson.version, bump, qualifier)
+
+  console.log(`Updating '${componentPath}' \tfrom ${pkgJson.version} to: ${semv}`);
+  pkgJson.version = semv
+
+  jsonFile.writeFileSync(file, pkgJson, {spaces: 2})
+
+}
+
+
+task(':versionBump', function (done: (err?: any) => void) {
   const bump = argv['bump'];
-  const currentDir = process.cwd();
+  const beta = argv['beta'];
+  const alpha = argv['alpha'];
+  const qualifier = alpha ? 'alpha' : beta ? 'beta' : null
 
   if (!bump) {
     console.log("You can specify a bump level with --bump=[<newversion> | major | minor | patch | premajor | preminor | prepatch | prerelease | from-git].");
@@ -64,19 +78,19 @@ task(':versionBump', function(done: (err?: any) => void) {
   } else {
     console.log(`Publishing using the ${bump} tag.`);
   }
-  console.log('\n\n');
 
-  // Build a promise chain that publish each component.
-  readdirSync(DIST_COMPONENTS_ROOT)
-    .reduce((prev, dirName) => prev.then(() => _execUpdateVersion(dirName, bump || 'patch')), Promise.resolve())
-    .then(() => done())
-    .catch((err: Error) => done(err))
-    .then(() => process.chdir(currentDir));
+  if (!beta && !alpha) {
+    console.log("You can increment a pre-release qualifier with '--bump=prerelease --[alpha|beta]'.");
+  }
+  let paths: string[] = collectComponents(SOURCE_ROOT)
+  paths.push(PROJECT_ROOT)
+  paths.sort()
+  versionBumpPaths(paths, bump, qualifier);
+  done()
 });
 
-task('versionBump', function(done: () => void) {
+task('versionBump', function (done: () => void) {
   gulpRunSequence(
-    'build:release',
     ':versionBump',
     done
   );
