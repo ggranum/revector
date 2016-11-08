@@ -35,7 +35,7 @@ githubToken=$(cat ./generate-changelog-token.local.txt) &&
   echo 'Run git push --follow-tags'
   git push --follow-tags &&
   ./node_modules/.bin/conventional-github-releaser -t ${githubToken} -p ${2:-$preset} &&
-  echo 'Run npm publish' &&
-  npm publish &&
+#  echo 'Run npm publish' &&
+#  npm publish &&
   echo 'done'
 
