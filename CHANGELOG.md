@@ -1,6 +1,9 @@
-<a name="0.0.2"></a>
-## [0.0.2](https://github.com/ggranum/revector/compare/v0.0.1...v0.0.2) (2016-11-08)
+<a name="0.0.1-alpha.11"></a>
+## 0.0.1-alpha.11 (2016-11-08)
 
+### Features
+* **all**: migrate components back into main project from demo ([e7e5c1b](https://github.com/ggranum/revector/commit/e7e5c1b))
+* **asciidoctor-panel**: add readme, update package.json ([ec05284](https://github.com/ggranum/revector/commit/ec05284))
 
 ### Features
 
