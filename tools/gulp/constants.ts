@@ -11,10 +11,10 @@ export const DIST_COMPONENTS_ROOT = join(DIST_ROOT, '@revector');
 export const NPM_VENDOR_FILES = [
   '@angular',
   'core-js/client',
+  'firebase',
   'hammerjs',
   'rxjs',
   'angularfire2/**/*.js',
-  'firebase/*.js',
   'systemjs/dist',
   'zone.js/dist'
 ];

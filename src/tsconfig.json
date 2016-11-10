@@ -1,0 +1,45 @@
+{
+  "compilerOptions": {
+    "declaration": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": ["es6", "dom"],
+    "mapRoot": "./",
+    "module": "es6",
+    "moduleResolution": "node",
+    "outDir": "../dist/out-tsc",
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "target": "es5",
+    "typeRoots": [
+      "../node_modules/@types"
+    ],
+    "types": [
+      "jasmine"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@revector/auth-service": [
+        "./lib/auth-service"
+      ],
+      "@revector/shared": [
+        "./lib/shared"
+      ],
+      "@revector/admin-ui": [
+        "./lib/admin-ui"
+      ],
+      "@revector/email-password-top-nav-login": [
+        "./lib/email-password-top-nav-login"
+      ],
+      "@revector/sign-in-panel": [
+        "./lib/sign-in-panel"
+      ],
+      "@revector/asciidoctor-panel": [
+        "./lib/asciidoctor-panel"
+      ],
+      "@revector/drawer": [
+        "./lib/drawer"
+      ]
+    }
+  }
+}
