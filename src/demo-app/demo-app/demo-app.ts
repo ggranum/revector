@@ -11,11 +11,10 @@ import {Component, ViewEncapsulation} from '@angular/core';
 export class Home {}
 
 @Component({
-  moduleId: module.id,
   selector: 'demo-app',
   providers: [],
   templateUrl: 'demo-app.html',
-  styleUrls: ['demo-app.css'],
+  styleUrls: ['demo-app.scss'],
   encapsulation: ViewEncapsulation.None,
 })
 export class DemoApp {

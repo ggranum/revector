@@ -1,7 +1,7 @@
 import {Routes} from '@angular/router';
 import {Home} from './demo-app';
 import {ButtonDemo} from '../button/button-demo';
-import {ButtonDemo2} from '../button2/button-demo2';
+import {ButtonDemo2} from '../asciidoctor-panel/asciidoctor-panel-demo';
 
 export const DEMO_APP_ROUTES: Routes = [
   {path: '', component: Home},

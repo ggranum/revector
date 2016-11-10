@@ -8,25 +8,23 @@
       "root": "src",
       "outDir": "dist",
       "assets": [
-        "assets",
-        "favicon.ico"
+        "demo-app/favicon.ico"
       ],
-      "index": "index.html",
-      "main": "main.ts",
+      "index": "demo-app/index.html",
+      "main": "demo-app/main.ts",
       "test": "test.ts",
       "tsconfig": "tsconfig.json",
-      "prefix": "app",
+      "prefix": "demo-app",
       "mobile": false,
       "styles": [
-        "styles.css",
-        "theme.scss",
-        "angular-material.layouts.min.css"
+        "demo-app/theme.scss",
+        "demo-app/angular-material.layouts.min.css"
       ],
       "scripts": [],
       "environments": {
-        "source": "environments/environment.ts",
-        "dev": "environments/environment.dev.ts",
-        "prod": "environments/environment.prod.ts"
+        "source": "demo-app/environments/environment.ts",
+        "dev": "demo-app/environments/environment.dev.ts",
+        "prod": "demo-app/environments/environment.prod.ts"
       }
     }
   ],

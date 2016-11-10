@@ -8,8 +8,8 @@ import {MaterialModule} from '@angular/material';
 import {DEMO_APP_ROUTES} from './demo-app/routes';
 
 import {ButtonDemo} from './button/button-demo';
-// import {SignInPanelModule} from '@revector/sign-in-panel';
-import {ButtonDemo2} from './button2/button-demo2';
+import {RvAsciidoctorPanelModule}  from '@revector/asciidoctor-panel';
+import {ButtonDemo2} from './asciidoctor-panel/asciidoctor-panel-demo';
 
 @NgModule({
   imports: [
@@ -19,7 +19,7 @@ import {ButtonDemo2} from './button2/button-demo2';
     ReactiveFormsModule,
     RouterModule.forRoot(DEMO_APP_ROUTES),
     MaterialModule.forRoot(),
-    // SignInPanelModule
+    RvAsciidoctorPanelModule.forRoot()
   ],
   declarations: [
     ButtonDemo,
