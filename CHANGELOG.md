@@ -1,3 +1,16 @@
+<a name="0.0.1-beta.0"></a>
+## 0.0.1-beta.0 (2016-11-11)
+
+
+### Features
+
+* **all:** migrate components back into main project from demo ([e7e5c1b](https://github.com/ggranum/revector/commit/e7e5c1b))
+* **asciidoctor-panel:** add readme, update package.json ([ec05284](https://github.com/ggranum/revector/commit/ec05284))
+* **demo:** adds demo-app and fixes unit tests ([4c96f26](https://github.com/ggranum/revector/commit/4c96f26))
+* **docs:** update readme files ([9211462](https://github.com/ggranum/revector/commit/9211462))
+
+
+
 <a name="0.0.1-alpha.11"></a>
 ## 0.0.1-alpha.11 (2016-11-08)
 
