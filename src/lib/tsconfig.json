@@ -37,7 +37,11 @@
       ],
       "@revector/drawer": [
         "./drawer"
+      ],
+      "@revector/inline-login-form": [
+        "./ux/inline-login-form"
       ]
+
     },
     "skipLibCheck": true,
     "typeRoots": [

@@ -1,7 +1,7 @@
 {
-  "name": "@revector/sign-in-panel",
+  "name": "@revector/inline-login-form",
   "version": "0.0.1-beta.0",
-  "description": "A sign-up form that works with the @revector/auth-service",
+  "description": "A horizontal login form that relies on @revector/auth-service. Can be inlined into a page header, for example.",
   "main": "./index.js",
   "typings": "./index.d.ts",
   "repository": {

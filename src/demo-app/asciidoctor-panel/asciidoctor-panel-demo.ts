@@ -6,7 +6,7 @@ import {Component} from '@angular/core';
   templateUrl: 'asciidoctor-panel-demo.html',
   styleUrls: ['asciidoctor-panel-demo.scss'],
 })
-export class ButtonDemo2 {
+export class AsciiDoctorPanelDemo {
   asciidoctorContent: string;
 
 

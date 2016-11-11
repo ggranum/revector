@@ -20,6 +20,6 @@ export class Home {}
 export class DemoApp {
   navItems = [
     {name: 'Button', route: 'button'},
-    {name: 'Button2', route: 'button2'},
+    {name: 'Asciidoctor-panel', route: 'asciidoctor-panel'},
   ];
 }
