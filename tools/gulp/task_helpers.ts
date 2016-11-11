@@ -5,6 +5,7 @@ import * as gulpTs from 'gulp-typescript';
 import * as path from 'path';
 
 import {NPM_VENDOR_FILES, PROJECT_ROOT, DIST_ROOT} from './constants';
+import {existsSync, readdirSync, statSync} from 'fs';
 
 
 /** Those imports lack typings. */
@@ -195,4 +196,37 @@ export function sequenceTask(...args: any[]) {
       done
     );
   }
+}
+
+
+export const listDirectories =  function(dirPath: string): string[] {
+  let dirs: string[] = []
+  let childPaths: string[] = readdirSync(dirPath)
+  childPaths.forEach((childName) => {
+    if (childName != 'node_modules') {
+      const childPath = path.join(dirPath, childName);
+      const stat = statSync(childPath);
+      if (stat.isDirectory()) {
+        dirs.push(childPath)
+        dirs = dirs.concat(listDirectories(childPath))
+      }
+    }
+  })
+  return dirs
+}
+
+export const pathIsComponentDir = function (filePath: string) {
+  let file = path.join(filePath, 'package.json')
+  return existsSync(file)
+}
+
+export const collectComponents = function (dirPath: string): string[] {
+  let componentPaths: string[] = []
+  let paths: string[] = listDirectories(dirPath)
+  paths.forEach((dirPath) => {
+    if (pathIsComponentDir(dirPath)) {
+      componentPaths.push(dirPath)
+    }
+  })
+  return componentPaths
 }

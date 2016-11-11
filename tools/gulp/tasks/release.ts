@@ -5,7 +5,7 @@ import gulpRunSequence = require('run-sequence');
 import path = require('path');
 import minimist = require('minimist');
 
-import {execTask, cleanTask} from '../task_helpers';
+import {execTask, cleanTask, collectComponents} from '../task_helpers';
 import {DIST_COMPONENTS_ROOT} from '../constants';
 
 const argv = minimist(process.argv.slice(3));
@@ -86,16 +86,19 @@ task(':publish', function(done: (err?: any) => void) {
   const label = argv['tag'];
   const currentDir = process.cwd();
 
+  let paths: string[] = collectComponents(DIST_COMPONENTS_ROOT)
+  console.log('paths', paths)
   if (!label) {
     console.log('You can use a label with --tag=labelName.');
-    console.log('Publishing using the latest tag.');
+    console.log('Publishing using the latest tag:', JSON.stringify(paths));
   } else {
-    console.log(`Publishing using the ${label} tag.`);
+    console.log(`Publishing using the ${label} tag,`, JSON.stringify(paths));
   }
   console.log('\n\n');
 
+
   // Build a promise chain that publish each component.
-  readdirSync(DIST_COMPONENTS_ROOT)
+  paths
     .reduce((prev, dirName) => prev.then(() => _execNpmPublish(dirName, label)), Promise.resolve())
     .then(() => done())
     .catch((err: Error) => done(err))
