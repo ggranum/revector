@@ -14,13 +14,26 @@ To start hacking, perform a clone-install-build:
 
 ```
 
+## Project structure
+
+### Build
+
+The build system is really two build systems. Because Webpack isn't great at creating packages (at least when used via Angular-CLI), there is one build path for building out the modularized widget/component packages that are deployed to npm (one per folder under 'lib', at least as the project is currently configured.), and there is another build system for running the demo and the unit tests.
+ 
+Gulp, plus a lot custom build code from the Material Design team, make up the former build system, while Angular CLI handles running the demo and the tests.
+  
+The main commands for building as a developer will be `npm run serve` and `npm run test` (if you have angular-cli installed globally, you can call `ng serve` and `ng test` directly - see the scripts block in package.json). Both of these tasks will watch for changes. The `serve` task hosts a server at [http://localhost:4200]()
+
+Before submitting a pull request you should verify that you can build using `npm run build`, but other than for that verification step, component developers won't typically need to run the gulp based builds. That's the publisher's main tool.
+
+Publishers will run a couple of tasks - which are explained in more detail later in this file. Obviously running the tests via `npm run test` is a good plan. And even verifying that the demo works via `npm run serve`. Once all that good stuff checks out the Publisher will run the `npm run build` task, followed by the `npm run versionBump` task. Manual inspection of console output and changes made to the submodules' package.json version numbers is next, followed by a commit, generating change logs and some npm publish steps. Again, detailed, step-by-step directions are below. 
 
 
 ## Building
 
 Most builds are just gulp commands aliased in the `package.json` `scripts` section.
 
-See a list of all available gulp build tasks with the `gulp help` command.
+See a list of all available gulp build tasks with the `gulp help` command. Take a look in package.json scripts section for the most commonly used build related commands. 
 
 ### Dev Builds
 
@@ -31,9 +44,9 @@ See a list of all available gulp build tasks with the `gulp help` command.
 
 # Build and serve with watch:
 > npm run serve
-
 ```
 
+`Serve` hosts the demo app at [http://localhost:4200]().
 
 ### Release Builds
 
@@ -45,7 +58,10 @@ See a list of all available gulp build tasks with the `gulp help` command.
 
 ### Running unit tests
 
-Unit test are not yet configured properly. It's the next milestone.
+
+```bash
+> npm run test
+```
 
 ### Running end-to-end tests
 
