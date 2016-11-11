@@ -7,4 +7,3 @@ import './tasks/lint';
 import './tasks/release';
 import './tasks/version-bump';
 import './tasks/serve';
-import './tasks/unit-test';

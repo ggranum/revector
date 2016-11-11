@@ -9,40 +9,10 @@ import path = require('path');
 import minimist = require('minimist');
 
 import {PROJECT_ROOT, SOURCE_ROOT} from '../constants';
+import {listDirectories, collectComponents} from "../task_helpers";
 
 const argv = minimist(process.argv.slice(3));
 
-const pathIsComponentDir = function (filePath: string) {
-  let file = path.join(filePath, 'package.json')
-  return existsSync(file)
-}
-
-const allDirectories = function (dirPath: string): string[] {
-  let dirs: string[] = []
-  let childPaths: string[] = readdirSync(dirPath)
-  childPaths.forEach((childName) => {
-    if (childName != 'node_modules') {
-      const childPath = path.join(dirPath, childName);
-      const stat = statSync(childPath);
-      if (stat.isDirectory()) {
-        dirs.push(childPath)
-        dirs = dirs.concat(allDirectories(childPath))
-      }
-    }
-  })
-  return dirs
-}
-
-const collectComponents = function (dirPath: string): string[] {
-  let componentPaths: string[] = []
-  let paths: string[] = allDirectories(dirPath)
-  paths.forEach((dirPath) => {
-    if (pathIsComponentDir(dirPath)) {
-      componentPaths.push(dirPath)
-    }
-  })
-  return componentPaths
-}
 
 const versionBumpPaths = function (paths: string[], bump: any, qualifier: string|string) {
 // Build a promise chain that updates each component's version.
