@@ -1,6 +1,6 @@
 {
   "name": "@revector/sign-in-panel",
-  "version": "0.0.1-beta.0",
+  "version": "0.0.1-beta.1",
   "description": "A sign-up form that works with the @revector/auth-service",
   "main": "./index.js",
   "typings": "./index.d.ts",

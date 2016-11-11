@@ -1,3 +1,13 @@
+<a name="0.0.1-beta.1"></a>
+## [0.0.1-beta.1](https://github.com/ggranum/revector/compare/v0.0.1-beta.0...v0.0.1-beta.1) (2016-11-11)
+
+
+### Features
+
+* **inline-login-form:** migrate the inline login form back to main project ([f426fcd](https://github.com/ggranum/revector/commit/f426fcd))
+
+
+
 <a name="0.0.1-beta.0"></a>
 ## 0.0.1-beta.0 (2016-11-11)
 
