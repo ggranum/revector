@@ -17,8 +17,26 @@
     "stripInternal": true,
     "baseUrl": "",
     "paths": {
-      "@revector/*": [
-        "./*"
+      "@revector/auth-service": [
+        "./auth-service"
+      ],
+      "@revector/shared": [
+        "./shared"
+      ],
+      "@revector/admin-ui": [
+        "./admin-ui"
+      ],
+      "@revector/email-password-top-nav-login": [
+        "./email-password-top-nav-login"
+      ],
+      "@revector/sign-in-panel": [
+        "./sign-in-panel"
+      ],
+      "@revector/asciidoctor-panel": [
+        "./asciidoctor-panel"
+      ],
+      "@revector/drawer": [
+        "./drawer"
       ]
     },
     "skipLibCheck": true,
