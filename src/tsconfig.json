@@ -37,6 +37,9 @@
       "@revector/asciidoctor-panel": [
         "./lib/asciidoctor-panel"
       ],
+      "@revector/inline-login-form": [
+        "./lib/ux/inline-login-form"
+      ],
       "@revector/drawer": [
         "./lib/drawer"
       ]

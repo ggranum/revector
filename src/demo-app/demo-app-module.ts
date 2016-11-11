@@ -9,7 +9,7 @@ import {DEMO_APP_ROUTES} from './demo-app/routes';
 
 import {ButtonDemo} from './button/button-demo';
 import {RvAsciidoctorPanelModule}  from '@revector/asciidoctor-panel';
-import {ButtonDemo2} from './asciidoctor-panel/asciidoctor-panel-demo';
+import {AsciiDoctorPanelDemo} from './asciidoctor-panel/asciidoctor-panel-demo';
 
 @NgModule({
   imports: [
@@ -23,7 +23,7 @@ import {ButtonDemo2} from './asciidoctor-panel/asciidoctor-panel-demo';
   ],
   declarations: [
     ButtonDemo,
-    ButtonDemo2,
+    AsciiDoctorPanelDemo,
     DemoApp,
     Home,
   ],
