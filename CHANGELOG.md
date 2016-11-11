@@ -1,3 +1,13 @@
+<a name="0.0.1-beta.2"></a>
+## [0.0.1-beta.2](https://github.com/ggranum/revector/compare/v0.0.1-beta.1...v0.0.1-beta.2) (2016-11-11)
+
+
+### Features
+
+* **build:** allow nested component projects to improve organization ([2e1fdfd](https://github.com/ggranum/revector/commit/2e1fdfd))
+
+
+
 <a name="0.0.1-beta.1"></a>
 ## [0.0.1-beta.1](https://github.com/ggranum/revector/compare/v0.0.1-beta.0...v0.0.1-beta.1) (2016-11-11)
 
