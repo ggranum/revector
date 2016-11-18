@@ -15,23 +15,14 @@ import {Store} from "@ngrx/store";
   selector: 'rv-admin-page',
   template: `<div class='admin-page-content' layout="row" layout-align="center">
   <md-tab-group flex color="primary" [selectedIndex]="1">
-  <md-tab>
-      <template md-tab-label>Users</template>
-      <template md-tab-content>
-        <rv-user-list></rv-user-list>
-      </template>
+    <md-tab label="Users">
+      <rv-user-list></rv-user-list>
     </md-tab>
-    <md-tab>
-      <template md-tab-label>Roles</template>
-      <template md-tab-content>
-        <rv-role-list></rv-role-list>
-      </template>
+    <md-tab label="Roles">
+      <rv-role-list></rv-role-list>
     </md-tab>
-    <md-tab>
-      <template md-tab-label>Permissions</template>
-      <template md-tab-content>
-        <rv-permission-list></rv-permission-list>
-      </template>
+    <md-tab label="Permissions">
+      <rv-permission-list></rv-permission-list>
     </md-tab>
   </md-tab-group>
 </div>`,
