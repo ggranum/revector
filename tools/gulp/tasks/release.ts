@@ -38,8 +38,7 @@ task(':publish:whoami', execTask('npm', ['whoami'], {
 task(':publish:logout', execTask('npm', ['logout']));
 
 
-function _execNpmPublish(componentName: string, label: string): Promise<void> {
-  const componentPath = path.join(DIST_COMPONENTS_ROOT, componentName);
+function _execNpmPublish(componentPath: string, label: string): Promise<void> {
   const stat = statSync(componentPath);
 
   if (!stat.isDirectory()) {
@@ -52,7 +51,7 @@ function _execNpmPublish(componentName: string, label: string): Promise<void> {
   }
 
   process.chdir(componentPath);
-  console.log(`Publishing '${componentName}' from '${componentPath}/'...`);
+  console.log(`Publishing '${componentPath}/'...`);
 
   const command = 'npm';
   let args = ['publish', '--access', 'public'];
@@ -76,7 +75,7 @@ function _execNpmPublish(componentName: string, label: string): Promise<void> {
         if(errMsg && errMsg.length){
           console.error('stderr:' + errMsg.replace('npm ERR!', ''));
         }
-        reject(new Error(`Component ${componentName} did not publish, status: ${code}.`));
+        reject(new Error(`Component ${componentPath} did not publish, status: ${code}.`));
       }
     });
   });

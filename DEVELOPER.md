@@ -110,7 +110,7 @@ The following require your npm user account credentials. Adding a local `.npmrc`
 > Password:
 > Email: (this IS public) (geoff.granum@gmail.com)
 > Logged in as revector on https://registry.npmjs.org/.
- 
+> npm run publish 
 ```
 
 

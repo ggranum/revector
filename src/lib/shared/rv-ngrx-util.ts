@@ -110,7 +110,7 @@ export class ActionReducerSet<S> {
    * Register a reducer for an action definition. If a reducer is not provided this method
    * will register a no-op reducer in it's place (useful for suppressing 'missing reducer' warnings).
    */
-  register<T>(actionDef: TypedActionDefinition<S, T>  , reducer?: ReducerSignature<S, T>) {
+  register<T>(actionDef: TypedActionDefinition<S, T>, reducer?: ReducerSignature<S, T>) {
     this.registerMapped(actionDef, null, reducer)
   }
 
