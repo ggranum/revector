@@ -1,3 +1,13 @@
+<a name="0.0.1-beta.3"></a>
+## [0.0.1-beta.3](https://github.com/ggranum/revector/compare/v0.0.1-beta.2...v0.0.1-beta.3) (2016-11-18)
+
+
+### Features
+
+* **Auth:** export reducer set directly ([7cb3b43](https://github.com/ggranum/revector/commit/7cb3b43))
+
+
+
 <a name="0.0.1-beta.2"></a>
 ## [0.0.1-beta.2](https://github.com/ggranum/revector/compare/v0.0.1-beta.1...v0.0.1-beta.2) (2016-11-11)
 
