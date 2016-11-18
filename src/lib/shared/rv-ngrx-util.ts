@@ -69,7 +69,7 @@ export interface ReducerSignature<S, T> {
   (state: S, action: TypedAction<T>): S
 }
 
-export interface ReducerMapping<S, M>   { toMapped: (S:any) => M, fromMapped: (S:any, M:any) => S
+export interface ReducerMapping<S, M> { toMapped: (S: any) => M, fromMapped: (S: any, M: any) => S
 }
 
 interface ReducerEntry<S, M> {
@@ -88,7 +88,7 @@ export class ActionReducerSet<S> {
 
   private _reducers: {[key: string]: ReducerEntry<any, any>} = {}
 
-  constructor(private _initialState?: S, private prefixScope?:string) {
+  constructor(private _initialState?: S, private prefixScope?: string) {
 
   }
 
@@ -123,27 +123,29 @@ export class ActionReducerSet<S> {
     return <T>(state: S = this._initialState, action: TypedAction<T>): S => {
       let newState: S = null
       let reducerEntry: ReducerEntry<S, any> = this._reducers[action.type]
-      if (reducerEntry && this.isInScope(action.type)) {
-        if (action.type.startsWith(reducerEntry.prefix)) {
-          let tempState = state
-          if (reducerEntry.mappedBy) {
-            tempState = reducerEntry.mappedBy.toMapped(state)
+      if (this.isInScope(action.type)) {
+        if (reducerEntry) {
+          if (action.type.startsWith(reducerEntry.prefix)) {
+            let tempState = state
+            if (reducerEntry.mappedBy) {
+              tempState = reducerEntry.mappedBy.toMapped(state)
+            }
+            newState = reducerEntry.reducer(tempState, action)
+            if (reducerEntry.mappedBy) {
+              newState = reducerEntry.mappedBy.fromMapped(state, newState)
+            }
           }
-          newState = reducerEntry.reducer(tempState, action)
-          if (reducerEntry.mappedBy) {
-            newState = reducerEntry.mappedBy.fromMapped(state, newState)
-          }
+        } else if (!action.type.startsWith('@ngrx')) {
+          console.log(`Missing reducer function for '${action.type}`, action)
         }
-      } else if (!action.type.startsWith('@ngrx')) {
-        console.log(`Missing reducer function for '${action.type}`, action)
       }
       return newState || state;
     }
   }
 
-  isInScope(actionType:string):boolean {
+  isInScope(actionType: string): boolean {
     let inScope = true
-    if(this.prefixScope){
+    if (this.prefixScope) {
       inScope = actionType.startsWith(this.prefixScope)
     }
     return inScope

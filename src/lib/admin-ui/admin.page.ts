@@ -14,7 +14,7 @@ import {Store} from "@ngrx/store";
 @Component({
   selector: 'rv-admin-page',
   template: `<div class='admin-page-content' layout="row" layout-align="center">
-  <md-tab-group flex color="primary">
+  <md-tab-group flex color="primary" [selectedIndex]="1">
   <md-tab>
       <template md-tab-label>Users</template>
       <template md-tab-content>
@@ -43,7 +43,6 @@ export class AdminPage {
 
   constructor(private route: ActivatedRoute, private router: Router, private _store: Store<AuthStoreState>) {
   }
-
 
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
