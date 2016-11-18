@@ -1,6 +1,6 @@
 {
   "name": "@revector/ui-admin-console",
-  "version": "0.0.1-beta.3",
+  "version": "0.0.1-beta.4",
   "description": "A basic administration console",
   "main": "./index.js",
   "typings": "./index.d.ts",

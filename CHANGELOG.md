@@ -1,3 +1,13 @@
+<a name="0.0.1-beta.4"></a>
+## [0.0.1-beta.4](https://github.com/ggranum/revector/compare/v0.0.1-beta.3...v0.0.1-beta.4) (2016-11-18)
+
+
+### Features
+
+* **util:** filter action scope for ngrx reducers ([03c5e93](https://github.com/ggranum/revector/commit/03c5e93))
+
+
+
 <a name="0.0.1-beta.3"></a>
 ## [0.0.1-beta.3](https://github.com/ggranum/revector/compare/v0.0.1-beta.2...v0.0.1-beta.3) (2016-11-18)
 
