@@ -88,7 +88,8 @@ export class ActionReducerSet<S> {
 
   private _reducers: {[key: string]: ReducerEntry<any, any>} = {}
 
-  constructor(private _initialState?: S) {
+  constructor(private _initialState?: S, private prefixScope?:string) {
+
   }
 
   combine(...reducerSets: ActionReducerSet<S>[]): void {
@@ -122,7 +123,7 @@ export class ActionReducerSet<S> {
     return <T>(state: S = this._initialState, action: TypedAction<T>): S => {
       let newState: S = null
       let reducerEntry: ReducerEntry<S, any> = this._reducers[action.type]
-      if (reducerEntry) {
+      if (reducerEntry && this.isInScope(action.type)) {
         if (action.type.startsWith(reducerEntry.prefix)) {
           let tempState = state
           if (reducerEntry.mappedBy) {
@@ -138,6 +139,14 @@ export class ActionReducerSet<S> {
       }
       return newState || state;
     }
+  }
+
+  isInScope(actionType:string):boolean {
+    let inScope = true
+    if(this.prefixScope){
+      inScope = actionType.startsWith(this.prefixScope)
+    }
+    return inScope
   }
 
 

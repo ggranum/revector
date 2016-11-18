@@ -41,7 +41,8 @@ const initialState: AuthServiceState = {
   user_roles: {},
 }
 
-export const authReducerSet: ActionReducerSet<AuthServiceState> = new ActionReducerSet<AuthServiceState>(initialState);
+export const authReducerSet: ActionReducerSet<AuthServiceState> =
+  new ActionReducerSet<AuthServiceState>(initialState, "[Auth.");
 authReducerSet.combine(currentUserReducers, roleReducers, permissionReducers, userReducers)
 
 export const AuthReducers = authReducerSet.reducer()
