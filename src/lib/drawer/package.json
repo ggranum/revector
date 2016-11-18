@@ -1,6 +1,6 @@
 {
   "name": "@revector/drawer",
-  "version": "0.0.1-beta.4",
+  "version": "0.0.1-beta.5",
   "description": "UI drawer (flyout, slide-out etc)",
   "main": "./index.js",
   "typings": "./index.d.ts",
@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/ggranum/revector#readme",
   "peerDependencies": {
-    "@angular/core": "~2.1.0",
-    "@angular/common": "~2.1.0"
+    "@angular/core": "~2.2.0",
+    "@angular/common": "~2.2.0"
   }
 }

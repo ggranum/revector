@@ -1,6 +1,6 @@
 {
   "name": "@revector/inline-login-form",
-  "version": "0.0.1-beta.4",
+  "version": "0.0.1-beta.5",
   "description": "A horizontal login form that relies on @revector/auth-service. Can be inlined into a page header, for example.",
   "main": "./index.js",
   "typings": "./index.d.ts",
@@ -24,17 +24,17 @@
   },
   "homepage": "https://github.com/ggranum/revector#readme",
   "peerDependencies": {
-    "@angular/core": "~2.1.0",
-    "@angular/common": "~2.1.0",
-    "@angular/forms": "~2.1.0",
+    "@angular/core": "~2.2.0",
+    "@angular/common": "~2.2.0",
+    "@angular/forms": "~2.2.0",
     "@angular/material": "2.0.0-alpha.9-3",
-    "@angular/compiler": "~2.1.0",
+    "@angular/compiler": "~2.2.0",
     "@revector/auth-service": "~0.0.1-beta.0",
     "@ngrx/core": "1.2.0",
     "@ngrx/effects": "2.0.0",
     "@ngrx/store": "2.2.1",
     "angularfire2": "2.0.0-beta.5",
-    "firebase": "3.4.1",
+    "firebase": "3.6.1",
     "rxjs": "5.0.0-beta.12"
   }
 }

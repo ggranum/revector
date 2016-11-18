@@ -1,3 +1,13 @@
+<a name="0.0.1-beta.5"></a>
+## [0.0.1-beta.5](https://github.com/ggranum/revector/compare/v0.0.1-beta.4...v0.0.1-beta.5) (2016-11-18)
+
+
+### Features
+
+* **dependencies:** update firebase, angular, angular material ([3afcd9f](https://github.com/ggranum/revector/commit/3afcd9f))
+
+
+
 <a name="0.0.1-beta.4"></a>
 ## [0.0.1-beta.4](https://github.com/ggranum/revector/compare/v0.0.1-beta.3...v0.0.1-beta.4) (2016-11-18)
 
