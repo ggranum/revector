@@ -16,7 +16,7 @@ Beta
 Chances are you'll be installing this as part of the installation of other Revector components, however, for the sake of completeness:  
 
 ```shell
-> npm install --save @revector/shared
+> npm install --save @revector/common
 ```
 
 ## Dependencies

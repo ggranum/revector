@@ -12,7 +12,7 @@ import {
 import {
   Update,
   ObjMap
-} from '@revector/shared'
+} from '@revector/common'
 
 
 @Component({

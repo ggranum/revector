@@ -1,5 +1,5 @@
 import {Action} from '@ngrx/store'
-import {RvError} from './core-util'
+import {RvError} from '@revector/common'
 
 export interface TypedAction<T> extends Action {
   payload: T

@@ -62,6 +62,10 @@ class AsciidoctorPanelRenderer {
     let x: any = window
     let Opal: any = x['Opal']
     let options: any = Opal.hash({doctype: 'article', attributes: ['showtitle']});
+
+    if(!content){
+      content = ""
+    }
     this._contentHtml = Opal.Asciidoctor.$convert(content, options);
     this._viewPanelEl.innerHTML = this._contentHtml
   }

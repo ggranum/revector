@@ -22,8 +22,11 @@
       "@revector/auth-service": [
         "./lib/auth-service"
       ],
-      "@revector/shared": [
-        "./lib/shared"
+      "@revector/common": [
+        "./lib/util/common"
+      ],
+      "@revector/util-ngrx": [
+        "./lib/util/ngrx"
       ],
       "@revector/admin-ui": [
         "./lib/admin-ui"
@@ -42,6 +45,9 @@
       ],
       "@revector/drawer": [
         "./lib/drawer"
+      ],
+      "@revector/inline-profile": [
+        "./ux/inline-profile"
       ]
     }
   }

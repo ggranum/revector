@@ -1,5 +1,5 @@
 
-import { ObjMap } from "@revector/shared";
+import { ObjMap } from "@revector/common";
 export function expectMapToBeEmpty(map: ObjMap<any>) {
   expect(map).toBeDefined('Should load an empty ObjMap.')
   expect(Object.keys(map).length).toEqual(0, 'Should load an empty ObjMap.')

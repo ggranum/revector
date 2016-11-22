@@ -1,4 +1,4 @@
-import {ObjMap} from "@revector/shared";
+import {ObjMap} from "@revector/common";
 
 
 import { User, UsersHavePermissionGrantsRelation, UsersHaveRolesRelation} from "./user";

@@ -3,9 +3,9 @@ import {
   ActionDefinition,
   InvokableActionSet,
   actionDefinition,
-  invokableActionSet,
-  ObjMap
-} from '@revector/shared'
+  invokableActionSet
+} from '@revector/util-ngrx'
+import {ObjMap} from "@revector/common";
 
 const USER_PREFIX = '[Auth.user] '
 

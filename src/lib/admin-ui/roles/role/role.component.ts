@@ -1,7 +1,7 @@
 import {Component, ChangeDetectionStrategy, Input, Output, EventEmitter} from '@angular/core'
 import {Observable} from 'rxjs'
 import {RolePermission, PermissionGrant, Permission, Role} from '@revector/auth-service'
-import {ObjMap, Update} from '@revector/shared'
+import {ObjMap, Update} from '@revector/common'
 
 
 @Component({

@@ -1,7 +1,7 @@
 import {Component, ChangeDetectionStrategy, Input, EventEmitter, Output} from '@angular/core'
 import {Store} from '@ngrx/store'
 import {Role, Permission, AuthServiceState} from '@revector/auth-service'
-import {ObjMap} from "@revector/shared";
+import {ObjMap} from "@revector/common";
 
 
 @Component({

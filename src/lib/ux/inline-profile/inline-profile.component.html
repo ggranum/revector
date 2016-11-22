@@ -1,8 +1,10 @@
 <div *ngIf="isSignedIn(signInState)" layout="row" layout-align="end center">
+  <md-icon (click)="showAccountFlyout = !showAccountFlyout; $event.stopPropagation()">account_circle</md-icon>
 
-  <md-icon (click)="showAccountFlyout = !showAccountFlyout">account_circle</md-icon>
-
-  <div *ngIf="showAccountFlyout" class="rv-profile-flyout" aria-label="Account Information" aria-hidden="false">
+  <div *ngIf="showAccountFlyout"
+       class="rv-profile-flyout"
+       (window:click)="dismiss($event)"
+       aria-label="Account Information" aria-hidden="false">
     <div class="rv-profile-user-card" layout="row" layout-align="space-between center">
       <div *ngIf="user.photoUrl" class="rv-profile-user-image" style="background-image: url({{user.photoUrl}});"
            title="Profile Photo"></div>
@@ -14,7 +16,7 @@
     </div>
     <div class="rv-profile-flyout-footer" layout="row" layout-align="end center">
       <div layout="row" layout-align="end center">
-        <button md-raised-button color="accent" class="rv-logout rv-button" (click)="doSignOut()">
+        <button md-raised-button color="accent" class="rv-logout rv-button" (click)="signOut(); $event.stopPropagation()">
           <span>
             <i class="material-icons rv-button-icon">lock</i>
             <i class="rv-button-text">{{logoutButtonLabel}}</i>

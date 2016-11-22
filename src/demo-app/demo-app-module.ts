@@ -11,6 +11,11 @@ import {ButtonDemo} from './button/button-demo';
 import {RvAsciidoctorPanelModule}  from '@revector/asciidoctor-panel';
 import {AsciiDoctorPanelDemo} from './asciidoctor-panel/asciidoctor-panel-demo';
 
+
+import {InlineProfileDemo} from "./ux/inline-profile-demo";
+import {InlineProfileComponent} from "../lib/ux/inline-profile/inline-profile.component";
+
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -24,6 +29,8 @@ import {AsciiDoctorPanelDemo} from './asciidoctor-panel/asciidoctor-panel-demo';
   declarations: [
     ButtonDemo,
     AsciiDoctorPanelDemo,
+    InlineProfileComponent,
+    InlineProfileDemo,
     DemoApp,
     Home,
   ],

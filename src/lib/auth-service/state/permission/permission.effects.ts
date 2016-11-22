@@ -16,10 +16,9 @@ import {Observable} from 'rxjs'
 import {PermissionActions} from './permission.actions'
 import {AngularFire} from 'angularfire2'
 import {
-  TypedAction,
   ObjMap,
-  Update
-} from '@revector/shared'
+} from '@revector/common'
+import {TypedAction, Update} from "@revector/util-ngrx";
 
 
 @Injectable()

@@ -8,7 +8,7 @@ import {
   Router,
   ActivatedRoute
 } from "@angular/router";
-import {safe} from "@revector/shared";
+import {safe} from "@revector/common";
 import {
   AuthStoreState,
   User,

@@ -20,6 +20,7 @@ export class Home {}
 export class DemoApp {
   navItems = [
     {name: 'Button', route: 'button'},
+    {name: 'Inline Profile', route: 'inline-profile'},
     {name: 'Asciidoctor-panel', route: 'asciidoctor-panel'},
   ];
 }

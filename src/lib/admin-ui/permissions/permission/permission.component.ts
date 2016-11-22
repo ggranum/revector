@@ -1,7 +1,7 @@
 import {Component, ChangeDetectionStrategy, Input, Output, EventEmitter} from '@angular/core'
 import {Observable} from 'rxjs'
 import {Permission} from '@revector/auth-service'
-import {Update} from '@revector/shared'
+import {Update} from '@revector/common'
 
 
 @Component({

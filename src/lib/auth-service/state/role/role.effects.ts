@@ -5,7 +5,10 @@ import {AngularFire} from 'angularfire2'
 import {Observable} from 'rxjs'
 import {AuthStoreState, Role, RolePermission, PermissionGrant, RolesHavePermissionGrantsRelation} from '../../interfaces'
 import {RoleActions} from './role.actions'
-import {ObjMap, TypedAction, cleanFirebaseMap, Update} from '@revector/shared'
+import {ObjMap, cleanFirebaseMap} from '@revector/common'
+import {TypedAction, Update} from "@revector/util-ngrx";
+
+
 
 
 @Injectable()

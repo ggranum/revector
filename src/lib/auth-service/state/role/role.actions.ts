@@ -4,9 +4,9 @@ import {
   InvokableActionSet,
   actionDefinition,
   invokableActionSet,
-  Update,
-  ObjMap
-} from '@revector/shared'
+  Update
+} from '@revector/util-ngrx'
+import {ObjMap} from "@revector/common";
 
 const ROLE_PREFIX = '[Auth.role] '
 export interface RoleActionsIF {

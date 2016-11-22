@@ -26,7 +26,7 @@ import {
   ObjMap,
   expectMapToBeEmpty,
   expectMapToContainOnly
-} from "@revector/shared";
+} from "@revector/common";
 
 let reducers = {
   auth: AuthReducers
