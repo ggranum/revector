@@ -27,7 +27,7 @@ const versionBumpPaths = function (paths: string[], bump: any, qualifier: string
   Object.keys(fullModules).forEach((key:string)=>{
     writeModuleDescriptor(fullModules[key])
   })
-
+  writeModuleDescriptor(maker.updatedRootModule())
 };
 
 function readModuleDescriptor(componentPath: string): PackageDescriptor {
@@ -41,7 +41,7 @@ function readModuleDescriptor(componentPath: string): PackageDescriptor {
 function writeModuleDescriptor(module: PackageDescriptor):void {
   let path = module.filePath
   delete module.filePath
-  jsonFile.writeFileSync(path + ".x.json", module, {spaces: 2})
+  jsonFile.writeFileSync(path, module, {spaces: 2})
 }
 
 

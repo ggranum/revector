@@ -11,7 +11,7 @@ export interface NpmBugs {
 }
 
 export interface PackageDescriptor {
-  filePath?:string
+  filePath?: string
   name: string
   version: string
   keywords: string[]
@@ -24,7 +24,8 @@ export interface PackageDescriptor {
   repository?: NpmRepository
   dependencies?: {[key: string]: string }
   devDependencies?: {[key: string]: string }
-  peerDependencies: {[key: string]: string }
+  peerDependencies: {[key: string]: string },
+  scripts?:any
 }
 
 const subPackageDefinition: PackageDescriptor = {
@@ -62,30 +63,44 @@ const rootPackageDefinition: PackageDescriptor = {
 }
 
 
+
 export class NpmPackageMaker {
 
-  private fullModuleDefinitions: {[key:string]:PackageDescriptor} = {}
-  private globalDependencies:{[key:string]:string};
-  private previousGlobalVersion:string
+  private fullModuleDefinitions: {[key: string]: PackageDescriptor} = {}
+  private globalDependencies: {[key: string]: string};
+  private previousGlobalVersion: string
+  private sharedDefinition:PackageDescriptor
 
   constructor(private globalPackageDefinition: PackageDescriptor,
-              private moduleDefinitions:{ [key:string]:PackageDescriptor},
+              private moduleDefinitions: { [key: string]: PackageDescriptor},
               private bump: string,
               private qualifier: string) {
     this.previousGlobalVersion = this.globalPackageDefinition.version
     this.globalDependencies = this.joinMaps(
-      this.globalPackageDefinition.dependencies,
-      this.globalPackageDefinition.devDependencies,
-      this.globalPackageDefinition.peerDependencies
+      this.globalPackageDefinition.dependencies || {},
+      this.globalPackageDefinition.devDependencies || {},
+      this.globalPackageDefinition.peerDependencies || {}
     )
+    this.sharedDefinition = Object.assign( {}, this.globalPackageDefinition, {
+      dependencies: {},
+      devDependencies: {},
+      peerDependencies: {}
+    });
+    delete this.sharedDefinition.scripts
   }
 
-  updateModules():{[key:string]:PackageDescriptor}{
-    this.globalPackageDefinition.version = SemVer.inc(this.globalPackageDefinition.version, this.bump, this.qualifier)
-    Object.keys(this.moduleDefinitions).forEach((key:string)=>{
+  updatedRootModule():PackageDescriptor{
+    return Object.assign({}, this.globalPackageDefinition, {
+      version: this.sharedDefinition.version
+    })
+  }
+
+  updateModules(): {[key: string]: PackageDescriptor} {
+    this.sharedDefinition.version = SemVer.inc(this.sharedDefinition.version, this.bump, this.qualifier)
+    Object.keys(this.moduleDefinitions).forEach((key: string) => {
       this.fullModuleDefinitions[key] = this.getFullDefinition(this.moduleDefinitions[key])
     })
-    Object.keys(this.fullModuleDefinitions).forEach((key:string)=>{
+    Object.keys(this.fullModuleDefinitions).forEach((key: string) => {
       let module = this.fullModuleDefinitions[key]
       module.peerDependencies = this.getUpdatedPeerDependencies(module);
     })
@@ -95,21 +110,26 @@ export class NpmPackageMaker {
 
   private getFullDefinition(module: PackageDescriptor): PackageDescriptor {
     let newVersion = SemVer.inc(module.version || this.previousGlobalVersion, this.bump, this.qualifier)
-    let fullDefinition = Object.assign({}, this.globalPackageDefinition, module, {
+    let fullDefinition = Object.assign({}, this.sharedDefinition, module, {
       version: newVersion
     })
-    fullDefinition.keywords = module.keywords.concat(this.globalPackageDefinition.keywords)
+    fullDefinition.keywords = module.keywords.concat(this.sharedDefinition.keywords)
     return fullDefinition
   }
 
-  private getUpdatedPeerDependencies(module: PackageDescriptor):{[key:string]:string} {
+  private getUpdatedPeerDependencies(module: PackageDescriptor): {[key: string]: string} {
     let peers: {[key: string]: string} = {}
+    let x = this.fullModuleDefinitions
     Object.keys(module.peerDependencies).forEach((key: string) => {
+
       let peerVersion = this.globalDependencies[key]
-      if (!peerVersion && this.fullModuleDefinitions[key]) {
-        peerVersion =  this.fullModuleDefinitions[key].version
+      if (!peerVersion && x[key]) {
+        peerVersion = x[key].version
       }
       if (!peerVersion) {
+        if(x[key]){
+          console.log('NpmPackageMaker', "now that's fucked", x[key].version)
+        }
         throw new Error(`Dependency for '${key}' not defined in the global project: cannot determine which version to use for module '${module.name} `)
       }
       peers[key] = peerVersion
@@ -118,19 +138,30 @@ export class NpmPackageMaker {
   }
 
 
-  joinMaps(...maps: {[key: string]: string}[]): {[key: string]: string} {
+  joinMaps(dependencies: {[key: string]: string}, devDependencies: {[key: string]: string}, peerDependencies: {[key: string]: string}): {[key: string]: string} {
     // Could use varArgs version of assign, but then we couldn't error check
-    let output: {[key: string]: string} = Object.assign({}, maps[0])
+    let output: {[key: string]: string} = Object.assign({}, dependencies)
+    let errors: string[] = [];
 
-    for (let i = 1; i < maps.length; i++) {
-      let aMap = maps[i];
-      Object.keys(aMap).forEach((key: string) => {
-        if (output[key]) {
-          throw new Error(`Collision while joining maps: '${key}' used multiple times.`)
-        }
-        output[key] = aMap[key]
-      })
+
+    Object.keys(devDependencies).forEach((key: string) => {
+      if (output[key]) {
+        errors.push(`Collision while joining maps: '${key}' defined in both 'dependencies' and 'devDependencies'.`)
+      }
+      output[key] = devDependencies[key]
+    })
+    Object.keys(peerDependencies).forEach((key: string) => {
+      if (output[key]) {
+        let abused = devDependencies[key] ? 'devDependencies' : 'dependencies'
+        errors.push(`Collision while joining maps: '${key}' defined in both '${abused}' and 'peerDependencies'.`)
+      }
+      output[key] = devDependencies[key]
+    })
+
+    if (errors.length) {
+      throw new Error(errors.join("\n"))
     }
+
     return output
   }
 }
