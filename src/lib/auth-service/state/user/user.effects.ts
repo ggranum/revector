@@ -13,7 +13,8 @@ import {
   UsersHavePermissionGrantsRelation,
   PermissionGrant
 } from '../../interfaces'
-import {TypedAction, cleanFirebaseMap, ObjMap} from '@revector/shared'
+import {cleanFirebaseMap, ObjMap} from '@revector/common'
+import {TypedAction} from "@revector/util-ngrx";
 
 
 @Injectable()

@@ -9,7 +9,8 @@ import {
   Effect
 } from '@ngrx/effects'
 
-import {TypedAction, RvError} from '@revector/shared'
+import {RvError} from '@revector/common'
+import {TypedAction} from '@revector/util-ngrx'
 //noinspection TypeScriptPreferShortImport
 import {
   RemoteAuthServiceCIF,

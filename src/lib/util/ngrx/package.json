@@ -1,5 +1,5 @@
 {
-  "name": "@revector/shared",
+  "name": "@revector/ng-rx-util",
   "version": "0.0.1-beta.5",
   "description": "Utility classes and shared functionality for the Revector components.",
   "main": "./index.js",

@@ -10,15 +10,10 @@ import {
 } from '../../interfaces'
 import {UserActions} from './user.actions'
 import {
-  generatePushID,
-  TypedAction,
-  ActionReducerSet,
-  ensureExists,
-  pathExists,
   ObjMap,
-  removeIfExists
-} from '@revector/shared'
+} from '@revector/common'
 import { UserStateFunctions } from "./user-state.functions";
+import {ActionReducerSet} from "@revector/util-ngrx";
 
 
 const stateFunctions = new UserStateFunctions()

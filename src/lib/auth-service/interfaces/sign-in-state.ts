@@ -1,4 +1,4 @@
-import {RvError} from "@revector/shared";
+import {RvError} from "@revector/common";
 
 export enum SignInStates {
   unknown = 1,

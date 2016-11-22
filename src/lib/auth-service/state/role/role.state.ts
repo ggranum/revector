@@ -3,9 +3,9 @@ import {RoleActions} from './role.actions'
 import {
   TypedAction,
   ActionReducerSet,
-  Update,
-  ObjMap
-} from '@revector/shared'
+  Update
+} from '@revector/util-ngrx'
+import {ObjMap} from "@revector/common";
 
 
 export const roleReducers = new ActionReducerSet<AuthServiceState>()

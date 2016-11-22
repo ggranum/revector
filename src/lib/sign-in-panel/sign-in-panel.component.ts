@@ -6,7 +6,7 @@ import {
   Output,
   EventEmitter
 } from "@angular/core";
-import {ChangeEvent} from "@revector/shared";
+import {ChangeEvent} from "@revector/common";
 import {NgForm} from "@angular/forms";
 
 export enum SignInAction {

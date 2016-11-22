@@ -8,13 +8,13 @@ import {
   UsersHaveRolesRelation
 } from "@revector/auth-service";
 import {
-  TypedAction,
   ObjMap,
   generatePushID,
   ensureExists,
   removeIfExists,
   pathExists
-} from "@revector/shared";
+} from "@revector/common";
+import {TypedAction} from "@revector/util-ngrx";
 /**
  * Functions for handling User State actions. These methods could be static, but leaving them as instance methods for
  * the time being as it's more flexible if we want to refactor later.
@@ -22,7 +22,6 @@ import {
  * All methods must be pure - that is, side effect free.
  */
 export class UserStateFunctions {
-
 
   getUsersFulfilled(state: ObjMap<User>, action: TypedAction<ObjMap<User>>): ObjMap<User> {
     state = Object.assign({}, action.payload)

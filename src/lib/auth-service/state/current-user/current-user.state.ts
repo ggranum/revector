@@ -1,7 +1,7 @@
 import {Action} from '@ngrx/store'
 import {CurrentUserActions} from './current-user.actions'
 import {CurrentUserState, SignInStates, AuthServiceState} from '../../interfaces'
-import {ActionReducerSet} from '@revector/shared'
+import {ActionReducerSet} from '@revector/util-ngrx'
 
 
 export const currentUserReducers = new ActionReducerSet<AuthServiceState>()

@@ -1,11 +1,9 @@
 import {Permission, AuthServiceState} from '../../interfaces'
 import {PermissionActions} from './permission.actions'
 import {
-  Update,
-  TypedAction,
-  ActionReducerSet,
   ObjMap
-} from '@revector/shared'
+} from '@revector/common'
+import {ActionReducerSet, TypedAction, Update} from "@revector/util-ngrx";
 
 export const permissionReducers = new ActionReducerSet<AuthServiceState>()
 

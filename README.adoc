@@ -34,7 +34,7 @@ npm install --save @revector/admin-ui
 npm install --save @revector/asciidoctor-panel
 npm install --save @revector/auth-service
 npm install --save @revector/drawer
-npm install --save @revector/shared
+npm install --save @revector/common
 npm install --save @revector/sign-in-component
 
 

@@ -1,7 +1,5 @@
-import {existsSync, readdirSync, statSync} from 'fs';
 import {task} from 'gulp';
 
-const semvar = require('semver');
 const jsonFile = require('jsonfile');
 
 import gulpRunSequence = require('run-sequence');
@@ -9,30 +7,41 @@ import path = require('path');
 import minimist = require('minimist');
 
 import {PROJECT_ROOT, SOURCE_ROOT} from '../constants';
-import {listDirectories, collectComponents} from "../task_helpers";
+import {collectComponents} from "../task_helpers";
+import {PackageDescriptor, NpmPackageMaker} from "../package-descriptor";
 
 const argv = minimist(process.argv.slice(3));
 
 
 const versionBumpPaths = function (paths: string[], bump: any, qualifier: string|string) {
-// Build a promise chain that updates each component's version.
+  let modules: {[key: string]: PackageDescriptor} = {}
   paths.forEach((componentPath: string) => {
-    _execUpdateVersion(componentPath, bump || 'patch', qualifier)
+    let module: PackageDescriptor = readModuleDescriptor(componentPath)
+    modules[module.name] = module
   })
+  let rootModule = readModuleDescriptor(PROJECT_ROOT)
+
+  let maker:NpmPackageMaker = new NpmPackageMaker(rootModule, modules, bump, qualifier)
+  let fullModules = maker.updateModules()
+
+  Object.keys(fullModules).forEach((key:string)=>{
+    writeModuleDescriptor(fullModules[key])
+  })
+  writeModuleDescriptor(maker.updatedRootModule())
 };
 
+function readModuleDescriptor(componentPath: string): PackageDescriptor {
+  let filePath = path.join(componentPath, 'package.json')
+  let module: PackageDescriptor = jsonFile.readFileSync(filePath)
+  module.filePath = filePath
 
-function _execUpdateVersion(componentPath: string, bump: string, qualifier: string) {
+  return module
+}
 
-  let file = path.join(componentPath, 'package.json')
-  let pkgJson = jsonFile.readFileSync(file)
-  let semv = semvar.inc(pkgJson.version, bump, qualifier)
-
-  console.log(`Updating '${componentPath}' \tfrom ${pkgJson.version} to: ${semv}`);
-  pkgJson.version = semv
-
-  jsonFile.writeFileSync(file, pkgJson, {spaces: 2})
-
+function writeModuleDescriptor(module: PackageDescriptor):void {
+  let path = module.filePath
+  delete module.filePath
+  jsonFile.writeFileSync(path, module, {spaces: 2})
 }
 
 
@@ -53,7 +62,6 @@ task(':versionBump', function (done: (err?: any) => void) {
     console.log("You can increment a pre-release qualifier with '--bump=prerelease --[alpha|beta]'.");
   }
   let paths: string[] = collectComponents(SOURCE_ROOT)
-  paths.push(PROJECT_ROOT)
   paths.sort()
   versionBumpPaths(paths, bump, qualifier);
   done()

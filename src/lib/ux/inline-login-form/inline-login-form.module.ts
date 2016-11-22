@@ -11,7 +11,7 @@ import {MdInputModule} from '@angular/material/input/input'
 
 import {InlineLoginFormContainer} from './inline-login-form.container'
 import {InlineLoginFormComponent} from './inline-login-form.component'
-import {InlineProfileComponent} from './inline-profile.component'
+import {InlineProfileComponent} from '../inline-profile/inline-profile.component'
 
 @NgModule({
   declarations: [

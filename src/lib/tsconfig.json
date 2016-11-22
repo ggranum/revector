@@ -20,8 +20,11 @@
       "@revector/auth-service": [
         "./auth-service"
       ],
-      "@revector/shared": [
-        "./shared"
+      "@revector/common": [
+        "./util/common"
+      ],
+      "@revector/util-ngrx": [
+        "./util/ngrx"
       ],
       "@revector/admin-ui": [
         "./admin-ui"
@@ -40,6 +43,9 @@
       ],
       "@revector/inline-login-form": [
         "./ux/inline-login-form"
+      ],
+      "@revector/inline-profile": [
+        "./ux/inline-profile"
       ]
 
     },

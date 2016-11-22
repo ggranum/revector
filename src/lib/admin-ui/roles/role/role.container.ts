@@ -12,7 +12,7 @@ import {
   Permission,
   RolePermission,
 } from '@revector/auth-service'
-import {ObjMap} from '@revector/shared'
+import {ObjMap} from '@revector/common'
 
 
 @Component({
